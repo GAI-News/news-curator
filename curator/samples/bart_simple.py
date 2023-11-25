@@ -1,4 +1,4 @@
-from curator import BARTSummarizer
+from curator.local import BARTSummarizer
 
 bart = BARTSummarizer()
 
