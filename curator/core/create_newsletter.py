@@ -31,8 +31,8 @@ for idx, row in collected_news_df.iterrows():
     d = {}
     d['url'] = row.url
     d['image'] = row.image
-    gpt_summarize.add_message(row.body, user='user')
-    d['summary'] = gpt_summarize("Here's the requested one-sentence summary: ", user='assistant').text
+    gpt_summarize.add_message(row.body)
+    d['summary'] = gpt_summarize("Write a one-sentence summary of the article.").text
     output.append(d)
 
 with open('resources/newsletter_output.jsonl', 'w') as f:
