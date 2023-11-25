@@ -8,18 +8,25 @@ config = Config()
 
 newscollector = NewsCollector(
     sources=config['PATHS']['SOURCES'],
-    output_filename='resources/newsletter_input.csv',
+    template=config['PATHS']['HTML_TEMPLATE'],
+    output_filename=config['PATHS']['OUTPUT_FILE'],
     news_date='2023-11-24'
 )
 newscollector.create()
 
-collected_news_df = pd.read_csv('resources/newsletter_input.csv').dropna()
+collected_news_df = pd.read_html(config['PATHS']['OUTPUT_FILE']).dropna()
 
 uplifting = True
 # User configurable
 
-gpt_identify_uplift = GPT(instructions='You are a helpful news curator. Is this article more uplifting or more demoralizing? Say only 1 word. No explanation needed.')
-gpt_summarize = GPT(instructions='You are a helpful news curator. You summarize news articles. Change the text style according to the task. You use simple language and short sentences for children to understand. You are friendly, lighthearted and excited!')
+gpt_identify_uplift = GPT(instructions=(
+    'You are a helpful news curator. Is this article more uplifting or more demoralizing? Say only 1 word. No '
+    'explanation needed.')
+)
+gpt_summarize = GPT(instructions=(
+    'You are a helpful news curator. You summarize news articles. Change the text style according to the task. You use '
+    'simple language and short sentences for children to understand. You are friendly, lighthearted and excited!')
+)
 
 output = []
 for idx, row in collected_news_df.iterrows():
