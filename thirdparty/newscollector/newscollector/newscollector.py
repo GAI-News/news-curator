@@ -27,7 +27,9 @@ class NewsCollector:
         self.sources = Helper.load_sources(sources)
         self.news_name = news_name  
         self.news_date, self.day_before = Helper.validate_date(news_date)
-        self.template, self.template_path = Helper.validate_template(template)
+        # self.template, self.template_path = Helper.validate_template(template)
+        self.template = os.path.basename(template)
+        self.template_path = os.path.dirname(template)
         self.output_filename = Helper.validate_output_filename(output_filename, news_date)
         self.return_details = Helper.validate_return_details(return_details)
         self.auto_open = Helper.validate_auto_open(auto_open)
@@ -117,6 +119,7 @@ class Processer:
 
     def find_clusters(df, tfidf_df, distance_threshhold=1):
         try:
+            tfidf_df = np.asarray(tfidf_df)
             ac = AgglomerativeClustering(distance_threshold=distance_threshhold, n_clusters=None).fit(tfidf_df)
             articles_labeled = ac.fit_predict(tfidf_df)
             cluster_count = {}
