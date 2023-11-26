@@ -25,10 +25,14 @@ your  config.
 4. **Email** / **Email Password**. Emails will be sent to users *from* the GoodNews email address provided in your 
 config. You will need to provide the email and email password.
 
-## Run the Server
+## Running the Backend Server
 
-First run the backend app, which will start a REST server listening to requests. Refer to the server class for 
-documentation on end points.
+The backend server is a FastAPI app that listens to requests to the `create_and_send_newsletter` endpoint. You may post 
+to this input with a json of user information, which will be used to download, curate and send out a newsletter report 
+to their email.
+
+First, run the backend app which will start a FastAPI (REST) server listening to requests. Refer to the 
+[server](curator/backend/server.py) class for documentation on end points.
 
 ```commandline
 python -m gunicorn -w 1 -b localhost:8080 -k uvicorn.workers.UvicornWorker curator.backend.server:app
@@ -67,5 +71,3 @@ as well as install all the local dependencies:
 pip install -r local_requirements.txt
 python curator/samples/bart_simple.py
 ```
-
-
