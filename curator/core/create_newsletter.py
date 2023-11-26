@@ -3,7 +3,9 @@ from curator import GPTZeroShotClassification
 from curator import NewsCollector
 from curator import Config
 import pandas as pd
-import json
+import smtplib
+from email.message import EmailMessage
+from email.mime.application import MIMEApplication
 
 config = Config()
 
@@ -17,7 +19,7 @@ PARAMS = {
     'mode': 'uplifting', # can be neutral, uplifting, demoralizing
     'tone': 'simple', # can be simple, casual, academic
     'length': 'short', # short or original
-    'email': "email"
+    'email': "re.bekled@gmail.com"
 }
 
 instructions = 'You are a helpful news curator. You summarize news articles. Change the text style according to the task. '
@@ -47,7 +49,34 @@ for idx, row in collected_news_df.iterrows():
     d['summary'] = gpt_summarize("Write a {} summary of the article.".format(length)).text
     output.append(d)
 
-# This is where we would send an email
-with open('resources/newsletter_output.jsonl', 'w') as f:
+# This is where we send an email
+SUBJECT = 'Your GoodNews!'
+EMAIL_USER = 'goodnews.seoultechimpact@gmail.com'
+EMAIL_PASS = 'vplcbqstyyveldkh'
+EMAIL_RECEIVER = PARAMS['email']
+
+def create_email_body(output):
+    text = ''
     for item in output:
-        f.write(json.dumps(item) + '\n')
+        text += item['summary'] + '\n' + item['url'] + '\n\n'
+    return text
+
+def send_mail(EMAIL_RECEIVER, BODY_TEXT):
+    msg = EmailMessage()
+    msg.set_content(BODY_TEXT)
+
+    msg['Subject'] = SUBJECT
+    msg['From'] = EMAIL_USER
+    msg['To'] = EMAIL_RECEIVER
+
+    #Send message
+    s = smtplib.SMTP('smtp.gmail.com: 587')
+    s.ehlo()
+    s.starttls()
+    s.login(EMAIL_USER, EMAIL_PASS)
+    s.send_message(msg, EMAIL_USER,EMAIL_RECEIVER)
+    s.close()
+    print(f"Email for {EMAIL_RECEIVER}, has sent!")
+
+BODY_TEXT = create_email_body(output)
+send_mail(EMAIL_RECEIVER, BODY_TEXT)
