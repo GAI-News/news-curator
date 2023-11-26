@@ -28,8 +28,8 @@ config. You will need to provide the email and email password.
 ## Running the Backend Server
 
 The backend server is a FastAPI app that listens to requests at the `create_and_send_newsletter` endpoint. You may post 
-to this input with a json of user information, which will be used to download, curate and send out a newsletter report 
-to their email.
+to this endpoint with a json of user information, which will be used to download, curate and send out a newsletter 
+report to their email.
 
 First, run the backend app which will start a FastAPI (REST) server listening to requests. Refer to the 
 [server](curator/backend/server.py) class for documentation on end points.
