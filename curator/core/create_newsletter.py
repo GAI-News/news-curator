@@ -25,7 +25,7 @@ if PARAMS['tone'] == "simple":
     instructions += 'You use simple language and short sentences for children to understand.'
 if PARAMS['tone'] == "casual":
     instructions += 'You are friendly, lighthearted and excited!'
-if PARAMS['length'] = "short":
+if PARAMS['length'] == "short":
     length = 'one-sentence'
 else:
     length = 'one-paragraph'
@@ -37,7 +37,7 @@ output = []
 for idx, row in collected_news_df.iterrows():
     if len(output) >= 6:
         break
-    if PARAMS['mode'] = 'Uplifting':
+    if PARAMS['mode'] == 'Uplifting':
         if gpt_identify_uplift.classify(row.body) != 'Uplifting':
             continue
     d = {}
