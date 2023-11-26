@@ -7,16 +7,14 @@ import json
 
 config = Config()
 
-newscollector = NewsCollector(
-    sources=config['PATHS']['SOURCES']
-)
-collected_news_df = newscollector.scrape_news().sample(frac=1).reset_index(drop=True) # Shuffles the df
+newscollector = NewsCollector(sources=config['PATHS']['SOURCES'])
+collected_news_df = newscollector.scrape_news().sample(frac=1).reset_index(drop=True)  # Shuffles the df
 
 # User configurable parameters
 PARAMS = {
-    'mode': 'uplifting', # can be neutral, uplifting, demoralizing
-    'tone': 'simple', # can be simple, casual, academic
-    'length': 'short', # short or original
+    'mode': 'uplifting',  # can be neutral, uplifting, demoralizing
+    'tone': 'simple',  # can be simple, casual, academic
+    'length': 'short',  # short or original
     'email': "email"
 }
 

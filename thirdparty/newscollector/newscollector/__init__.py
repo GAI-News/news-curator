@@ -1,1 +1,1 @@
-from newscollector.newscollector import *
+from thirdparty.newscollector.newscollector.newscollector import *
