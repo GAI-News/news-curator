@@ -1,32 +1,8 @@
-# GAI News Curator
+# React + Vite
 
-## Dev Installation
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Create a virtual environment as desired, and then:
+Currently, two official plugins are available:
 
-```commandline
-git clone git@github.com:GAI-News/news-curator.git as goodnews && cd goodnews
-pip install -r requirements.xt
-```
-
-## Samples
-
-You should be able to run the newscollector sample with:
-
-```commandline
-python curator/samples/newscollector_simple.py
-```
-
-Running the GPT sample requires you place an OpenAI key in your [config.ini](curator/config/config.ini) file. And then:
-
-```commandline
-python curator/samples/gpt_simple.py
-```
-
-Running the Bart sample requires you place a Huggingface key in you [config.ini](curator/config/config.ini) file, 
-as well as install all the local dependencies:
-
-```commandline
-pip install -r local_requirements.txt
-python curator/samples/bart_simple.py
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
