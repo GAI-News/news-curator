@@ -8,8 +8,7 @@ import json
 config = Config()
 
 newscollector = NewsCollector(
-    sources=config['PATHS']['SOURCES'],
-    news_date='2023-11-25'
+    sources=config['PATHS']['SOURCES']
 )
 collected_news_df = newscollector.scrape_news().sample(frac=1).reset_index(drop=True) # Shuffles the df
 
@@ -31,7 +30,7 @@ if PARAMS['length'] = short:
 else:
     length = 'one-paragraph'
 
-gpt_identify_uplift = GPTZeroShotClassification(classes=['Uplifting', 'Demoralizing' 'Neutral'])
+gpt_identify_uplift = GPTZeroShotClassification(classes=['Uplifting', 'Demoralizing', 'Neutral'])
 gpt_summarize = GPT(instructions=instructions)
 
 output = []
