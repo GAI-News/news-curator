@@ -23,9 +23,9 @@ PARAMS = {
 instructions = 'You are a helpful news curator. You summarize news articles. Change the text style according to the task. '
 if PARAMS['tone'] == "simple":
     instructions += 'You use simple language and short sentences for children to understand.'
-if PARAMS['tone'] == casual:
+if PARAMS['tone'] == "casual":
     instructions += 'You are friendly, lighthearted and excited!'
-if PARAMS['length'] = short:
+if PARAMS['length'] = "short":
     length = 'one-sentence'
 else:
     length = 'one-paragraph'
