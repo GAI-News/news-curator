@@ -20,7 +20,9 @@ To run the backend end-to-end, you need to place the following into your [config
 1. **OpenAI API key**. This is used to connect to GPT.
 2. (Optional) **Huggingface API Key**. If you would like to run the local AI components, instead of GPT, you will need 
 to add a HF API Key.
-3. **Email** / **Email Password**. Emails will be sent to users *from* the email address in your config. You will need 
+3. **User Email**. Output emails can be sent to any user. By default they will be sent to the user email contained in 
+your  config.
+4. **Email** / **Email Password**. Emails will be sent to users *from* the email address in your config. You will need 
 to provide the email and email password.
 
 ## Run the Server
