@@ -1,5 +1,9 @@
 # GAI News Curator
 
+![GoodNews](resources/sample_output.png)
+
+Open-source effort to help people curate their news in a healthy, positive way.
+
 ## Dev Installation
 
 Create a virtual environment as desired, and then:
