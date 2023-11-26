@@ -1,1 +1,2 @@
-from curator.local.bart import BARTSummarizer
+from curator.local.bart_summarizer import BARTSummarizer
+from curator.local.bart_zero_shot_classifier import BARTZeroShotClassifier

@@ -145,7 +145,7 @@ class Processer:
             for i in clusters.keys():
                 if len(set([j["source"] for j in clusters[i]])) > 1:
                     featured_clusters[i] = clusters[i]
-            for i in range(len(featured_clusters), 6, 1):
+            for i in range(len(featured_clusters), 30, 1):
                 featured_clusters[f'nan_{i}'] = [{"source":None, 
                                         "url": None, 
                                         "date":None, 
@@ -162,12 +162,31 @@ class Processer:
 
     def build_html(clusters_dict, news_name, news_date, template, output_filename, template_path):
         try:
-            newsletter = flask.Flask('newsletter', template_folder=template_path)
-
             Helper.shuffle_content(clusters_dict)
-            similar_articles = Helper.prettify_similar(clusters_dict)
 
+            source = []
+            url = []
+            body = []
+            image = []
+            for d in clusters_dict:
+                source.append(clusters_dict[d][0]['source'])
+                url.append(clusters_dict[d][0]['url'])
+                body.append(clusters_dict[d][0]['body'])
+                image.append(clusters_dict[d][0]['image_url'])
+            news_df = pd.DataFrame()
+            news_df['source'] = source
+            news_df['url'] = url
+            news_df['body'] = body
+            news_df['image'] = image
+            print('Saving csv of length ' + str(len(news_df)))
+            news_df.to_csv(output_filename)
+
+            """
+            newsletter = flask.Flask('newsletter', template_folder=template_path)
+            similar_articles = Helper.prettify_similar(clusters_dict)
+            
             with newsletter.app_context():
+                
                 rendered = flask.render_template(template, \
                                                 news_name=news_name,\
                                                 news_date=news_date,\
@@ -240,6 +259,7 @@ class Processer:
             output = open(output_filename, 'w', encoding="utf-8")
             output.write(rendered)
             output.close()
+            """
             return True
         except:
             raise Exception(f'Error in "Processer.build_html()"')

@@ -30,9 +30,9 @@ class GPT(CuratorBase):
 
     """
     name = 'GPT'
-    default_instructions = 'You are a helpful personal assistant. Answer user questions. Write code as necessary.'
-    default_tools = [{"type": "code_interpreter"}, {"type": "retrieval"}]
-    default_model = 'gpt-4-1106-preview'
+    default_instructions = 'You are a writing assistant. '
+    default_tools = []#[{"type": "code_interpreter"}, {"type": "retrieval"}]
+    default_model = 'gpt-3.5-turbo-1106'
 
     def __init__(
         self,
@@ -103,17 +103,17 @@ class GPT(CuratorBase):
         self.thread = self.client.beta.threads.create()
         self._history = []
 
-    def add_message(self, text: str):
+    def add_message(self, text: str, user: str):
         """Add a message to the chat history without sending it for a response."""
         self.client.beta.threads.messages.create(
             thread_id=self.thread.id,
-            role='user',
+            role=user,
             content=text
         )
 
-    def message(self, text: str, instructions: Optional[str] = None) -> Message:
+    def message(self, text: str, user: Optional[str] = 'user', instructions: Optional[str] = None) -> Message:
         """Send a message to the agent and get a response."""
-        self.add_message(text)
+        self.add_message(text, user = user)
 
         run = self.client.beta.threads.runs.create(
             thread_id=self.thread.id,
