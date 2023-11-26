@@ -9,7 +9,7 @@ Open-source effort to help people curate their news in a healthy, positive way.
 Create a virtual environment as desired, and then:
 
 ```commandline
-git clone git@github.com:GAI-News/news-curator.git as goodnews && cd goodnews
+git clone git@github.com:GAI-News/news-curator.git goodnews && cd goodnews
 pip install -r requirements.txt
 ```
 
