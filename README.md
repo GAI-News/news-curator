@@ -34,7 +34,7 @@ documentation on end points.
 python -m gunicorn -w 1 -b localhost:8080 -k uvicorn.workers.UvicornWorker curator.backend.server:app
 ```
 
-Once the server is up and running, you can make queries to it, as show in client sample:
+Once the server is up and running, you can make queries to it, as show in the client sample:
 
 ```commandline
 python curator/samples/client.py --host localhost:8080/
