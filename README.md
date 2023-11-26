@@ -30,3 +30,18 @@ as well as install all the local dependencies:
 pip install -r local_requirements.txt
 python curator/samples/bart_simple.py
 ```
+
+## Run the Server
+
+First run the backend app, which will start a REST server listening to requests. Refer to the server class for 
+documentation on end points.
+
+```commandline
+python -m gunicorn -w 1 -b localhost:8080 -k uvicorn.workers.UvicornWorker curator.backend.server:app
+```
+
+Once the server is up and running, you can make queries to it, as show in client sample:
+
+```commandline
+python curator/samples/client.py --host localhost:8080/
+```
