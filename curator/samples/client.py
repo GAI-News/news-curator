@@ -18,9 +18,7 @@ def main():
         tone=config['USER']['TONE'],  # simple
         length=config['USER']['LENGTH']  # short
     )
-    response = client.create_and_send_newsletter(user_info=user_info)
-
-    print(response)
+    client.create_and_send_newsletter(user_info=user_info)
 
 
 if __name__ == '__main__':
