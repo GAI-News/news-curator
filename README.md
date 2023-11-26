@@ -2,7 +2,7 @@
 
 ![GoodNews](resources/sample_output.png)
 
-Open-source effort to help people curate their news in a healthy, positive way.
+An open-source project helping people curate their news in a healthy, positive way.
 
 ## Dev Installation
 
